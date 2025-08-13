@@ -1,0 +1,259 @@
+{
+  "project_info": {
+    "project_number": "437893918475",
+    "firebase_url": "https://sareer-publications-80391-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sareer-publications-80391",
+    "storage_bucket": "sareer-publications-80391.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437893918475:android:d9e65f20baa15127d6bc0e",
+        "android_client_info": {
+          "package_name": "com.busmate.sending_bus_locations"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMCpJQli92DlKu6oib8h__CB_p_2BRU_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437893918475-42bdhcjvnjs6n3frh1nrd1rjjfpmhbkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sareerPublications"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437893918475:android:2557bd1428a4113ad6bc0e",
+        "android_client_info": {
+          "package_name": "com.example.admin_panel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMCpJQli92DlKu6oib8h__CB_p_2BRU_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437893918475-42bdhcjvnjs6n3frh1nrd1rjjfpmhbkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sareerPublications"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437893918475:android:5ba187061d144c22d6bc0e",
+        "android_client_info": {
+          "package_name": "com.example.busmate_updated"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMCpJQli92DlKu6oib8h__CB_p_2BRU_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437893918475-42bdhcjvnjs6n3frh1nrd1rjjfpmhbkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sareerPublications"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437893918475:android:b518e52bbd5d6796d6bc0e",
+        "android_client_info": {
+          "package_name": "com.example.check_fire_storage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437893918475-vff41chjbhmt954ur0f54ncq8rhlu9di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.check_fire_storage",
+            "certificate_hash": "0a918b187dbd5ec0e79c7206a3448a8287a1eba6"
+          }
+        },
+        {
+          "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMCpJQli92DlKu6oib8h__CB_p_2BRU_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437893918475-42bdhcjvnjs6n3frh1nrd1rjjfpmhbkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sareerPublications"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437893918475:android:ababed262c14f79fd6bc0e",
+        "android_client_info": {
+          "package_name": "com.example.sareer_publications"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437893918475-1s0nbgo7bebq2un06ftpqrfaavpaggrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sareer_publications",
+            "certificate_hash": "65fe864afc07a49d1efc3a41fc84acc188c13d25"
+          }
+        },
+        {
+          "client_id": "437893918475-oujkntn5larjj0rrde1b1skls9apug5l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sareer_publications",
+            "certificate_hash": "909c7c0b65d09094c71ab4a35481bfb3ce14b59d"
+          }
+        },
+        {
+          "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMCpJQli92DlKu6oib8h__CB_p_2BRU_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437893918475-42bdhcjvnjs6n3frh1nrd1rjjfpmhbkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sareerPublications"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437893918475:android:86f1859a92dd5daad6bc0e",
+        "android_client_info": {
+          "package_name": "com.sareer_publications.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437893918475-g241ar1fbobspebb799e29rdlj70vi5r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sareer_publications.app",
+            "certificate_hash": "0a918b187dbd5ec0e79c7206a3448a8287a1eba6"
+          }
+        },
+        {
+          "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMCpJQli92DlKu6oib8h__CB_p_2BRU_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437893918475-uveh3v9frj8fu09vbotk5pr9es9rjos0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "437893918475-42bdhcjvnjs6n3frh1nrd1rjjfpmhbkd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sareerPublications"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
