@@ -1,53 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserDataScreen extends StatelessWidget {
+class UserDataScreen extends StatefulWidget {
   const UserDataScreen({super.key});
 
-  // Mock user data for demonstration purposes
-  // In a real application, this data would be fetched from Firebase Firestore
-  final List<Map<String, dynamic>> _userData = const [
-    {
-      'id': 'user_001',
-      'name': 'Alice Smith',
-      'address': '123 Main St, Anytown',
-      'contact': '555-1234',
-      'email': 'alice.s@example.com',
-      'status': 'Active',
-    },
-    {
-      'id': 'user_002',
-      'name': 'Bob Johnson',
-      'address': '456 Oak Ave, Otherville',
-      'contact': '555-5678',
-      'email': 'bob.j@example.com',
-      'status': 'Inactive',
-    },
-    {
-      'id': 'user_003',
-      'name': 'Charlie Brown',
-      'address': '789 Pine Ln, Somewhere',
-      'contact': '555-9012',
-      'email': 'charlie.b@example.com',
-      'status': 'Active',
-    },
-    {
-      'id': 'user_004',
-      'name': 'Diana Prince',
-      'address': '101 Hero Rd, Themyscira',
-      'contact': '555-3456',
-      'email': 'diana.p@example.com',
-      'status': 'Active',
-    },
-    {
-      'id': 'user_005',
-      'name': 'Eve Adams',
-      'address': '202 Apple Blvd, Eden',
-      'contact': '555-7890',
-      'email': 'eve.a@example.com',
-      'status': 'Pending',
-    },
-  ];
+  @override
+  State<UserDataScreen> createState() => _UserDataScreenState();
+}
 
+class _UserDataScreenState extends State<UserDataScreen> {
   // Colors from the provided image (re-defined for self-containment, but ideally from a theme)
   static const Color _primaryTextColor = Color(0xFF000000);
   static const Color _secondaryTextColor = Color(0xFF6B7280);
@@ -71,127 +32,155 @@ class UserDataScreen extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          // A Card to give the table a nice elevated look
-          Card(
-            elevation: 4,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
-            ),
-            color: _secondaryBackgroundColor,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal, // Allows horizontal scrolling for wide tables
-                child: DataTable(
-                  headingRowColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) => _primaryColor.withOpacity(0.1), // Light primary color for header
+          // StreamBuilder to listen for real-time updates from Firestore
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance.collection('profile').snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                }
+
+                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'No user data found.',
+                      style: TextStyle(fontSize: 18, color: _secondaryTextColor),
+                    ),
+                  );
+                }
+
+                final List<DocumentSnapshot> documents = snapshot.data!.docs;
+
+                return Card(
+                  elevation: 4,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
                   ),
-                  dataRowColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) => _secondaryBackgroundColor, // White for data rows
-                  ),
-                  columnSpacing: 30, // Space between columns
-                  horizontalMargin: 10, // Horizontal margin for the table
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade300), // Light border around the table
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  columns: const [
-                    DataColumn(
-                      label: Text(
-                        'ID',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Name',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Address',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Contact',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Email',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Status',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                      ),
-                    ),
-                    DataColumn(
-                      label: Text(
-                        'Actions',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                      ),
-                    ),
-                  ],
-                  rows: _userData.map((user) {
-                    return DataRow(
-                      cells: [
-                        DataCell(Text(user['id']!, style: const TextStyle(color: _secondaryTextColor))),
-                        DataCell(Text(user['name']!, style: const TextStyle(color: _primaryTextColor))),
-                        DataCell(Text(user['address']!, style: const TextStyle(color: _secondaryTextColor))),
-                        DataCell(Text(user['contact']!, style: const TextStyle(color: _primaryTextColor))),
-                        DataCell(Text(user['email']!, style: const TextStyle(color: _secondaryTextColor))),
-                        DataCell(
-                          Chip(
-                            label: Text(user['status']!),
-                            backgroundColor: user['status'] == 'Active'
-                                ? Colors.green.shade100
-                                : user['status'] == 'Inactive'
-                                ? Colors.red.shade100
-                                : Colors.orange.shade100,
-                            labelStyle: TextStyle(
-                              color: user['status'] == 'Active'
-                                  ? Colors.green.shade800
-                                  : user['status'] == 'Inactive'
-                                  ? Colors.red.shade800
-                                  : Colors.orange.shade800,
-                              fontWeight: FontWeight.bold,
+                  color: _secondaryBackgroundColor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: DataTable(
+                        headingRowColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) => _primaryColor.withOpacity(0.1),
+                        ),
+                        dataRowColor: MaterialStateProperty.resolveWith<Color?>(
+                              (Set<MaterialState> states) => _secondaryBackgroundColor,
+                        ),
+                        columnSpacing: 30,
+                        horizontalMargin: 10,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey.shade300),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        columns: const [
+                          DataColumn(
+                            label: Text(
+                              'ID',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
                             ),
                           ),
-                        ),
-                        DataCell(
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.edit, color: _primaryColor),
-                                tooltip: 'Edit User',
-                                onPressed: () {
-                                  // Implement edit functionality
-                                  print('Edit user: ${user['name']}');
-                                },
+                          DataColumn(
+                            label: Text(
+                              'Name',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Text(
+                              'Address',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Text(
+                              'Contact',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Text(
+                              'Email',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Text(
+                              'Status',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
+                            ),
+                          ),
+                          DataColumn(
+                            label: Text(
+                              'Actions',
+                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
+                            ),
+                          ),
+                        ],
+                        rows: documents.map((doc) {
+                          final user = doc.data() as Map<String, dynamic>;
+                          final String status = user['status'] ?? 'N/A';
+                          return DataRow(
+                            cells: [
+                              DataCell(Text(doc.id, style: const TextStyle(color: _secondaryTextColor))),
+                              DataCell(Text(user['name'] ?? 'N/A', style: const TextStyle(color: _primaryTextColor))),
+                              DataCell(Text(user['address'] ?? 'N/A', style: const TextStyle(color: _secondaryTextColor))),
+                              DataCell(Text(user['contact'] ?? 'N/A', style: const TextStyle(color: _primaryTextColor))),
+                              DataCell(Text(user['email'] ?? 'N/A', style: const TextStyle(color: _secondaryTextColor))),
+                              DataCell(
+                                Chip(
+                                  label: Text(status),
+                                  backgroundColor: status == 'Active'
+                                      ? Colors.green.shade100
+                                      : status == 'Inactive'
+                                      ? Colors.red.shade100
+                                      : Colors.orange.shade100,
+                                  labelStyle: TextStyle(
+                                    color: status == 'Active'
+                                        ? Colors.green.shade800
+                                        : status == 'Inactive'
+                                        ? Colors.red.shade800
+                                        : Colors.orange.shade800,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                              IconButton(
-                                icon: const Icon(Icons.delete, color: Colors.red),
-                                tooltip: 'Delete User',
-                                onPressed: () {
-                                  // Implement delete functionality
-                                  print('Delete user: ${user['name']}');
-                                },
+                              DataCell(
+                                Row(
+                                  children: [
+                                    IconButton(
+                                      icon: const Icon(Icons.edit, color: _primaryColor),
+                                      tooltip: 'Edit User',
+                                      onPressed: () {
+                                        print('Edit user: ${user['name']}');
+                                        // Implement edit functionality here
+                                      },
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.delete, color: Colors.red),
+                                      tooltip: 'Delete User',
+                                      onPressed: () {
+                                        print('Delete user: ${user['name']}');
+                                        // Implement delete functionality here
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
-                          ),
-                        ),
-                      ],
-                    );
-                  }).toList(),
-                ),
-              ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                  ),
+                );
+              },
             ),
           ),
         ],
