@@ -50,14 +50,14 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAasaWRjkxUPhlnqiK-lb3t1LVSil8P5Ko',
-    appId: '1:437893918475:web:356cbf5abe9a54dfd6bc0e',
-    messagingSenderId: '437893918475',
-    projectId: 'sareer-publications-80391',
-    authDomain: 'sareer-publications-80391.firebaseapp.com',
-    databaseURL: 'https://sareer-publications-80391-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'sareer-publications-80391.firebasestorage.app',
-    measurementId: 'G-W7P1FNG8VV',
+    apiKey: 'AIzaSyDWDFN7UaQK1oHBTdV-p0evwxYahLhqEn0',
+    appId: '1:64129881421:web:6771b68198644b27cd9304',
+    messagingSenderId: '64129881421',
+    projectId: 'busmate-54bb3',
+    authDomain: 'busmate-54bb3.firebaseapp.com',
+    databaseURL: 'https://busmate-54bb3-default-rtdb.firebaseio.com',
+    storageBucket: 'busmate-54bb3.firebasestorage.app',
+    measurementId: 'G-KGVQMB2K4D',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
