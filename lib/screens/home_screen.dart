@@ -76,11 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: 'Route Management',
                   index: 3,
                 ),
-                _buildDrawerItem(
-                  icon: Icons.bar_chart,
-                  title: 'Reports',
-                  index: 4,
-                ),
               ],
             ),
           ),

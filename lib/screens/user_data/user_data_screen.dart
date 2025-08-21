@@ -35,7 +35,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
           // StreamBuilder to listen for real-time updates from Firestore
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance.collection('profile').snapshots(),
+              stream: FirebaseFirestore.instance.collection('Users').snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
@@ -82,7 +82,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
                         columns: const [
                           DataColumn(
                             label: Text(
-                              'ID',
+                              'CMS ID',
                               style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
                             ),
                           ),
@@ -94,13 +94,7 @@ class _UserDataScreenState extends State<UserDataScreen> {
                           ),
                           DataColumn(
                             label: Text(
-                              'Address',
-                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                            ),
-                          ),
-                          DataColumn(
-                            label: Text(
-                              'Contact',
+                              'Home Address',
                               style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
                             ),
                           ),
@@ -110,69 +104,15 @@ class _UserDataScreenState extends State<UserDataScreen> {
                               style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
                             ),
                           ),
-                          DataColumn(
-                            label: Text(
-                              'Status',
-                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                            ),
-                          ),
-                          DataColumn(
-                            label: Text(
-                              'Actions',
-                              style: TextStyle(fontWeight: FontWeight.bold, color: _primaryTextColor),
-                            ),
-                          ),
                         ],
                         rows: documents.map((doc) {
                           final user = doc.data() as Map<String, dynamic>;
-                          final String status = user['status'] ?? 'N/A';
                           return DataRow(
                             cells: [
-                              DataCell(Text(doc.id, style: const TextStyle(color: _secondaryTextColor))),
+                              DataCell(Text(user['cmsId'] ?? 'N/A', style: const TextStyle(color: _primaryTextColor))),
                               DataCell(Text(user['name'] ?? 'N/A', style: const TextStyle(color: _primaryTextColor))),
-                              DataCell(Text(user['address'] ?? 'N/A', style: const TextStyle(color: _secondaryTextColor))),
-                              DataCell(Text(user['contact'] ?? 'N/A', style: const TextStyle(color: _primaryTextColor))),
+                              DataCell(Text(user['homeAddress'] ?? 'N/A', style: const TextStyle(color: _secondaryTextColor))),
                               DataCell(Text(user['email'] ?? 'N/A', style: const TextStyle(color: _secondaryTextColor))),
-                              DataCell(
-                                Chip(
-                                  label: Text(status),
-                                  backgroundColor: status == 'Active'
-                                      ? Colors.green.shade100
-                                      : status == 'Inactive'
-                                      ? Colors.red.shade100
-                                      : Colors.orange.shade100,
-                                  labelStyle: TextStyle(
-                                    color: status == 'Active'
-                                        ? Colors.green.shade800
-                                        : status == 'Inactive'
-                                        ? Colors.red.shade800
-                                        : Colors.orange.shade800,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              DataCell(
-                                Row(
-                                  children: [
-                                    IconButton(
-                                      icon: const Icon(Icons.edit, color: _primaryColor),
-                                      tooltip: 'Edit User',
-                                      onPressed: () {
-                                        print('Edit user: ${user['name']}');
-                                        // Implement edit functionality here
-                                      },
-                                    ),
-                                    IconButton(
-                                      icon: const Icon(Icons.delete, color: Colors.red),
-                                      tooltip: 'Delete User',
-                                      onPressed: () {
-                                        print('Delete user: ${user['name']}');
-                                        // Implement delete functionality here
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ],
                           );
                         }).toList(),
